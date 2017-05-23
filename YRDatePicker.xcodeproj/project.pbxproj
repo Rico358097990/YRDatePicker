@@ -15,6 +15,8 @@
 		4297E2101ED3BCCF006C488B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4297E20F1ED3BCCF006C488B /* Assets.xcassets */; };
 		4297E2131ED3BCCF006C488B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4297E2111ED3BCCF006C488B /* LaunchScreen.storyboard */; };
 		4297E2211ED3C496006C488B /* YRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297E2201ED3C496006C488B /* YRPickerView.m */; };
+		4297E2251ED3C992006C488B /* YRCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297E2231ED3C992006C488B /* YRCollectionViewCell.m */; };
+		4297E22C1ED3D515006C488B /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297E22B1ED3D515006C488B /* UIView+Sizes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,10 @@
 		4297E2141ED3BCCF006C488B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4297E21F1ED3C496006C488B /* YRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRPickerView.h; sourceTree = "<group>"; };
 		4297E2201ED3C496006C488B /* YRPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRPickerView.m; sourceTree = "<group>"; };
+		4297E2221ED3C992006C488B /* YRCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCollectionViewCell.h; sourceTree = "<group>"; };
+		4297E2231ED3C992006C488B /* YRCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCollectionViewCell.m; sourceTree = "<group>"; };
+		4297E22A1ED3D515006C488B /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
+		4297E22B1ED3D515006C488B /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		7AFDEE3E4757737A309A6F1E /* Pods-YRDatePicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YRDatePicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YRDatePicker/Pods-YRDatePicker.debug.xcconfig"; sourceTree = "<group>"; };
 		85A495FE6ABAD63AB7D98E19 /* Pods-YRDatePicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YRDatePicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-YRDatePicker/Pods-YRDatePicker.release.xcconfig"; sourceTree = "<group>"; };
 		9C23BED6667F3973598DACE7 /* libPods-YRDatePicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YRDatePicker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +109,10 @@
 			children = (
 				4297E21F1ED3C496006C488B /* YRPickerView.h */,
 				4297E2201ED3C496006C488B /* YRPickerView.m */,
+				4297E2221ED3C992006C488B /* YRCollectionViewCell.h */,
+				4297E2231ED3C992006C488B /* YRCollectionViewCell.m */,
+				4297E22A1ED3D515006C488B /* UIView+Sizes.h */,
+				4297E22B1ED3D515006C488B /* UIView+Sizes.m */,
 			);
 			path = YRPickerView;
 			sourceTree = "<group>";
@@ -248,9 +258,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4297E20B1ED3BCCF006C488B /* ViewController.m in Sources */,
+				4297E22C1ED3D515006C488B /* UIView+Sizes.m in Sources */,
 				4297E2211ED3C496006C488B /* YRPickerView.m in Sources */,
 				4297E2081ED3BCCF006C488B /* AppDelegate.m in Sources */,
 				4297E2051ED3BCCF006C488B /* main.m in Sources */,
+				4297E2251ED3C992006C488B /* YRCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
