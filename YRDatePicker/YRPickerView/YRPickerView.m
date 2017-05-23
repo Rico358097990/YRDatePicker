@@ -73,6 +73,11 @@
     
 }
 
+- (void)reloadData{
+    [self.collectionView reloadData];
+    self.collectionView.contentOffset = CGPointZero;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.dataArr.count;
 }

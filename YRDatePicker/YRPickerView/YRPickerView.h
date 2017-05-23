@@ -37,6 +37,7 @@
 + (instancetype)pickerViewinitWithFrame:(CGRect)frame andArr:(NSArray <NSString *> * )dataArr;
 
 - (void)titleForItem:(void(^)(NSInteger item))callBack;
+- (void)reloadData;
 @end
 
 
