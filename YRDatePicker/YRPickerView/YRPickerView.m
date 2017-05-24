@@ -63,6 +63,8 @@
     self.itemHeight = self.itemHeight ?: 20;
     self.textColor = self.textColor ?: [UIColor blackColor];
     self.itemBGColor = self.itemBGColor ?: [UIColor clearColor];
+    
+    
     YRCollectionViewFlowLayout *layout = [[YRCollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
     layout.itemHeight = self.itemHeight;
@@ -75,8 +77,13 @@
     [self addSubview:self.collectionView];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
-    
+ 
+}
+
+- (void)setDataArr:(NSArray<NSString *> *)dataArr{
+    self.title = dataArr.firstObject;
+    _dataArr = dataArr;
+    [self reloadData];
 }
 
 - (void)reloadData{
@@ -93,7 +100,6 @@
     item.myLabel.font = self.textFont;
     item.backgroundColor = self.itemBGColor;
     item.myLabel.textColor = self.textColor;
-    NSLog(@"%@",_dataArr);
     item.myLabel.text = self.dataArr[indexPath.item];
     return item;
 }
@@ -131,11 +137,15 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     CGPoint center = [self convertPoint:self.collectionView.center toView:self.collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:center];
+    self.title = self.dataArr[indexPath.row];
     if ([self.delegate respondsToSelector:@selector(pickerView:didSelectItem:)]) {
         // 代理开始做事情
         [self.delegate pickerView:self didSelectItem:indexPath.row];
     }
-    self.callBack(indexPath.row);
+    if (_callBack) {
+        self.callBack(indexPath.row);
+    }
+    
     
 }
 
@@ -219,7 +229,7 @@ static CGFloat const ScaleFactor = 0.4;
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    UICollectionViewLayoutAttributes *attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+    UICollectionViewLayoutAttributes *attributes = [[super layoutAttributesForItemAtIndexPath:indexPath] copy];
     
     CGRect visibleRect = (CGRect){self.collectionView.contentOffset, self.collectionView.bounds.size};
     attributes.alpha = 0.5;

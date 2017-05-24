@@ -28,6 +28,8 @@
 @property (nonatomic, weak) id <YRPickerViewDelegate> delegate;
 @property (nonatomic, weak) id <YRPickerViewDataSource> dataSource;
 @property (nonatomic, strong) NSArray <NSString *>*dataArr;
+@property (nonatomic, strong) NSString *title;
+
 //coustom自定义
 @property (nonatomic, assign) CGFloat itemHeight;
 @property (nonatomic, strong) UIFont *textFont;
@@ -37,6 +39,7 @@
 + (instancetype)pickerViewinitWithFrame:(CGRect)frame andArr:(NSArray <NSString *> * )dataArr;
 
 - (void)titleForItem:(void(^)(NSInteger item))callBack;
+
 - (void)reloadData;
 @end
 

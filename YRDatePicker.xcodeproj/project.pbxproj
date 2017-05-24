@@ -18,6 +18,7 @@
 		4297E2251ED3C992006C488B /* YRCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297E2231ED3C992006C488B /* YRCollectionViewCell.m */; };
 		4297E22C1ED3D515006C488B /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297E22B1ED3D515006C488B /* UIView+Sizes.m */; };
 		4297E22E1ED5159D006C488B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4297E22D1ED5159D006C488B /* AudioToolbox.framework */; };
+		42DB586F1ED5624500AAFF56 /* YRDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DB586E1ED5624500AAFF56 /* YRDatePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		4297E22A1ED3D515006C488B /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
 		4297E22B1ED3D515006C488B /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		4297E22D1ED5159D006C488B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		42DB586D1ED5624500AAFF56 /* YRDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDatePicker.h; sourceTree = "<group>"; };
+		42DB586E1ED5624500AAFF56 /* YRDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDatePicker.m; sourceTree = "<group>"; };
 		7AFDEE3E4757737A309A6F1E /* Pods-YRDatePicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YRDatePicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YRDatePicker/Pods-YRDatePicker.debug.xcconfig"; sourceTree = "<group>"; };
 		85A495FE6ABAD63AB7D98E19 /* Pods-YRDatePicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YRDatePicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-YRDatePicker/Pods-YRDatePicker.release.xcconfig"; sourceTree = "<group>"; };
 		9C23BED6667F3973598DACE7 /* libPods-YRDatePicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YRDatePicker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +106,8 @@
 		4297E21D1ED3C496006C488B /* YRDatePicker */ = {
 			isa = PBXGroup;
 			children = (
+				42DB586D1ED5624500AAFF56 /* YRDatePicker.h */,
+				42DB586E1ED5624500AAFF56 /* YRDatePicker.m */,
 			);
 			path = YRDatePicker;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 			files = (
 				4297E20B1ED3BCCF006C488B /* ViewController.m in Sources */,
 				4297E22C1ED3D515006C488B /* UIView+Sizes.m in Sources */,
+				42DB586F1ED5624500AAFF56 /* YRDatePicker.m in Sources */,
 				4297E2211ED3C496006C488B /* YRPickerView.m in Sources */,
 				4297E2081ED3BCCF006C488B /* AppDelegate.m in Sources */,
 				4297E2051ED3BCCF006C488B /* main.m in Sources */,
