@@ -10,9 +10,15 @@
 #import "YRPickerView.h"
 #import "YRCollectionViewCell.h"
 #import "UIView+Sizes.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface YRCollectionViewFlowLayout : UICollectionViewFlowLayout
+@property (nonatomic, assign) CGFloat itemHeight;
 @property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGFloat midY;
+@property (nonatomic, assign) CGFloat maxAngle;
+/** 存放所有cell的布局属性 */
+@property (nonatomic, strong) NSMutableArray *attrsArray;
 @end
 
 
@@ -59,7 +65,7 @@
     self.itemBGColor = self.itemBGColor ?: [UIColor clearColor];
     YRCollectionViewFlowLayout *layout = [[YRCollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    layout.height = self.itemHeight;
+    layout.itemHeight = self.itemHeight;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor clearColor];
@@ -113,6 +119,15 @@
 }
 
 #pragma mark -scrollViewDelegate
+//播放声音
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if ((int)scrollView.contentOffset.y % (int)self.itemHeight == 0) {
+        
+        AudioServicesPlaySystemSound(1105);
+    }
+}
+
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     CGPoint center = [self convertPoint:self.collectionView.center toView:self.collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:center];
@@ -121,6 +136,7 @@
         [self.delegate pickerView:self didSelectItem:indexPath.row];
     }
     self.callBack(indexPath.row);
+    
 }
 
 - (void)titleForItem:(void(^)(NSInteger item))callBack{
@@ -136,42 +152,39 @@
 
 - (void)prepareLayout {
     [super prepareLayout];
+    [self.attrsArray removeAllObjects];
+    NSUInteger count = [self.collectionView numberOfItemsInSection:0];
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        UICollectionViewLayoutAttributes *attrs = [self layoutAttributesForItemAtIndexPath:indexPath];
+        [self.attrsArray addObject:attrs];
+    }
     self.minimumLineSpacing = 0;
+    CGRect visibleRect = (CGRect){self.collectionView.contentOffset, self.collectionView.bounds.size};
+    self.midY = CGRectGetMidY(visibleRect);
+    self.height = CGRectGetHeight(visibleRect) / 2;
+    self.maxAngle = M_PI_2;
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
+    [super shouldInvalidateLayoutForBoundsChange:newBounds];
     return YES;
 }
 
-static CGFloat const ScaleFactor = 0.4;
-//这里设置放大范围
+
+
+
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
     
-    NSArray *original = [super layoutAttributesForElementsInRect:rect];
-    NSArray *array =  [[NSArray alloc]initWithArray:original copyItems:YES];
-    
-    CGRect visibleRect = (CGRect){self.collectionView.contentOffset, self.collectionView.bounds.size};
-    
-    for (UICollectionViewLayoutAttributes *attributes in array) {
-        //如果cell在屏幕上则进行缩放
-        if (CGRectIntersectsRect(attributes.frame, rect)) {
-            
-            attributes.alpha = 0.5;
-            
-            CGFloat distance = CGRectGetMidY(visibleRect) - attributes.center.y;//距离中点的距离
-            CGFloat normalizedDistance = distance / self.height;
-            
-            if (ABS(distance) < self.height) {
-                CGFloat zoom = 1 + ScaleFactor * (1 - ABS(normalizedDistance)); //放大渐变
-                attributes.transform3D = CATransform3DMakeScale(zoom, zoom, 1.0);
-                attributes.zIndex = 1;
-                attributes.alpha = 1.0;
-            }
+    NSMutableArray *attributes = [NSMutableArray array];
+    if ([self.collectionView numberOfSections]) {
+        for (NSInteger i = 0; i < [self.collectionView numberOfItemsInSection:0]; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+            [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
         }
     }
-    
-    return array;
+    return attributes;
 }
 
 
@@ -199,5 +212,37 @@ static CGFloat const ScaleFactor = 0.4;
     
     return CGPointMake(proposedContentOffset.x, proposedContentOffset.y + offsetAdjustment);
 }
+
+//放大范围
+static CGFloat const ScaleFactor = 0.4;
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    UICollectionViewLayoutAttributes *attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+    
+    CGRect visibleRect = (CGRect){self.collectionView.contentOffset, self.collectionView.bounds.size};
+    attributes.alpha = 0.5;
+    
+    CGFloat distance = CGRectGetMidY(visibleRect) - attributes.center.y;//距离中点的距离
+    CGFloat normalizedDistance = distance / self.itemHeight;
+    CATransform3D transform = CATransform3DIdentity;
+    if (ABS(distance) < self.itemHeight) {
+        CGFloat zoom = 1 + ScaleFactor * (1 - ABS(normalizedDistance)); //放大渐变
+        transform = CATransform3DMakeScale(zoom, zoom, 1.0);
+        attributes.zIndex = 1;
+        attributes.alpha = 1.0;
+        
+    }
+
+    CGFloat currentAngle = self.maxAngle * distance / self.height / M_PI_2 *2.5;
+    if (ABS(currentAngle) > M_PI / 2.0) {
+        currentAngle = M_PI / 2.0;
+    }
+    transform = CATransform3DRotate(transform, currentAngle, 1, 0, 0);
+    attributes.transform3D = transform;
+    return attributes;
+}
+
 
 @end

@@ -29,7 +29,6 @@
     }];
     //PCview.delegate = self;
     PCview.textColor = [UIColor redColor];
-    PCview.itemBGColor = [UIColor lightGrayColor];
     PCview.textFont = [UIFont systemFontOfSize:20];
     PCview.itemHeight = 40;
     PCview.dataArr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12"];
@@ -37,10 +36,10 @@
         NSLog(@"%ld",item);
     }];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        PCview.dataArr = @[@"34",@"3424",@"76567",@"dfg",@"fgsd"];
-        [self.PCView reloadData];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        PCview.dataArr = @[@"34",@"3424",@"76567",@"dfg",@"fgsd"];
+//        [self.PCView reloadData];
+//    });
 }
 
 
