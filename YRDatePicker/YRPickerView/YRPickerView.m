@@ -31,7 +31,7 @@
 
 
 @implementation YRPickerView
-
+//构造方法
 + (instancetype)pickerViewinitWithFrame:(CGRect)frame andArr:(NSArray <NSString *> * )dataArr{
     return [[self alloc]initWithFrame:frame andArr:dataArr];
 }
@@ -69,6 +69,7 @@
     [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
     layout.itemHeight = self.itemHeight;
     
+    //collectionview属性设置
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor clearColor];
     [self.collectionView registerClass:[YRCollectionViewCell class] forCellWithReuseIdentifier:@"item"];
@@ -91,6 +92,7 @@
     self.collectionView.contentOffset = CGPointZero;
 }
 
+#pragma mark -collectionDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.dataArr.count;
 }
@@ -149,6 +151,7 @@
     
 }
 
+#pragma mark - block方法
 - (void)titleForItem:(void(^)(NSInteger item))callBack{
     self.callBack = callBack;
 }
@@ -201,12 +204,8 @@
 //scroll 停止对中间位置进行偏移量校正
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
     CGFloat offsetAdjustment = MAXFLOAT;
-    ////  |-------[-------]-------|
-    ////  |滑动偏移|可视区域 |剩余区域|
-    //是整个collectionView在滑动偏移后的当前可见区域的中点
+
     CGFloat centerY = proposedContentOffset.y + (CGRectGetHeight(self.collectionView.bounds) / 2.0);
-    //    CGFloat centerX = self.collectionView.center.x; //这个中点始终是屏幕中点
-    //所以这里对collectionView的具体尺寸不太理解，输出的是屏幕大小，但实际上宽度肯定超出屏幕的
     
     CGRect targetRect = CGRectMake(0.0, proposedContentOffset.y, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
     

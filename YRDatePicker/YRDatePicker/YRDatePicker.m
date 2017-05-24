@@ -84,7 +84,6 @@
     self.yearPickView = yearPickView;
     yearPickView.delegate = self;
     yearPickView.textColor = [UIColor redColor];
-    //yearPickView.dataArr = @[@"dfsdf",@"sdfsdfsd",@"dsfsdf",@"dsfsdf",@"dsfsdf",@"dsfsdf"];
     yearPickView.textFont = self.textFont;
     [self addSubview:yearPickView];
     
@@ -99,7 +98,6 @@
     self.monthPickView = monthPickView;
     monthPickView.delegate = self;
     monthPickView.textColor = [UIColor purpleColor];
-    //monthPickView.dataArr = @[@"dfsdf",@"sdfsdfsd",@"dsfsdf",@"dsfsdf",@"dsfsdf",@"dsfsdf",@"dsfsdf"];
     monthPickView.textFont = self.textFont;
     [self addSubview:monthPickView];
     
@@ -114,7 +112,6 @@
     self.dayPickView = dayPickView;
     dayPickView.delegate = self;
     dayPickView.textColor = [UIColor lightGrayColor];
-    //dayPickView.dataArr = @[@"dfsdf",@"sdfsdfsd",@"dsfsdf",@"dsfsdf",@"dsfsdf",@"dsfsdf"];
     dayPickView.textFont = self.textFont;
     [self addSubview:dayPickView];
     
