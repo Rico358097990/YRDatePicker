@@ -14,6 +14,7 @@
 @interface ViewController ()<YRPickerViewDelegate,YRDatePickerDelegate>
 @property (nonatomic, strong)YRPickerView *PCView;
 @property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) YRDatePicker *datePicker;
 
 @end
 
@@ -24,6 +25,7 @@
     
     
     YRDatePicker *datePicker = [[YRDatePicker alloc] initWithFrame:CGRectZero];
+    self.datePicker = datePicker;
     [self.view addSubview:datePicker];
     [datePicker mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
