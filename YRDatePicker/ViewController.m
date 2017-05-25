@@ -57,9 +57,10 @@
     timeLabel.text = [NSString stringWithFormat:@"%@年%@月%@日",datePicker.yearPickView.dataArr.firstObject,datePicker.monthPickView.dataArr.firstObject,datePicker.dayPickView.dataArr.firstObject];
     
     //block
-//    [datePicker titleForDatePicker:^(NSString *string) {
-//        timeLabel.text = string;
-//    }];
+    __weak typeof(self) weakSelf = self;
+    [datePicker titleForDatePicker:^(NSString *string) {
+        weakSelf.timeLabel.text = string;
+    }];
     
     
     /*
